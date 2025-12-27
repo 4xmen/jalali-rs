@@ -399,14 +399,6 @@ pub fn persian_or_arabic_digits_to_latin(s: &str) -> String {
         .collect()
 }
 
-// Helper function to convert Gregorian date to Julian Day Number (JDN).
-fn gregorian_to_jdn(year: i32, month: i32, day: i32) -> i64 {
-    let a = (14 - month) / 12;
-    let y = year as i64 + 4800 - a as i64;
-    let m = month as i64 + 12 * a as i64 - 3;
-    day as i64 + ((153 * m + 2) / 5) + 365 * y + (y / 4) - (y / 100) + (y / 400) - 32045
-}
-
 // Helper function to convert Julian Day Number (JDN) to Gregorian date.
 fn jdn_to_gregorian(jdn: i64) -> (i32, u32, u32) {
     let a = jdn + 32044;
@@ -423,23 +415,34 @@ fn jdn_to_gregorian(jdn: i64) -> (i32, u32, u32) {
 
 // Helper function to convert Unix timestamp to Gregorian date.
 fn unix_to_gregorian(timestamp: i64) -> Option<(i32, u32, u32)> {
-    if timestamp < 0 {
-        return None;
-    }
+    // Modify to handle negative timestamps
     let days = timestamp / 86_400;
     let jdn = 2_440_588 + days;
-    let (year, month, day) = jdn_to_gregorian(jdn);
-    Some((year, month, day))
+    Some(jdn_to_gregorian(jdn))
 }
 
 // Helper function to convert Gregorian date to Unix timestamp.
 fn gregorian_to_unix(year: i32, month: u32, day: u32) -> Option<i64> {
     let jdn = gregorian_to_jdn(year, month as i32, day as i32);
     let days = jdn - 2_440_588;
-    if days < 0 {
-        return None;
-    }
     Some(days * 86_400)
+}
+
+// Additional helper function for Julian Day Number conversion
+fn gregorian_to_jdn(year: i32, month: i32, day: i32) -> i64 {
+    let a = (14 - month) / 12;
+    let y = year + 4800 - a;
+    let m = month + 12 * a - 3;
+
+    let jdn = day as i64
+        + ((153 * m + 2) / 5) as i64
+        + 365 * y as i64
+        + y as i64 / 4
+        - y as i64 / 100
+        + y as i64 / 400
+        - 32045;
+
+    jdn
 }
 
 #[cfg(test)]
@@ -476,6 +479,9 @@ mod tests {
     fn test_unix_to_jalali() {
         let result = unix_to_jalali(0);
         assert_eq!(result, Some((1348, 10, 11)));
+
+        let result2 = unix_to_jalali(-1234567890);
+        assert_eq!(result2, Some((1309, 8, 28)));
     }
 
     #[test]
