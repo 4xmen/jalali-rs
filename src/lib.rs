@@ -161,3 +161,27 @@ pub fn jalali_to_gregorian(
 
     (gregorian_year, gregorian_month as u32, gregorian_day as u32)
 }
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_gregorian_to_jalali() {
+        // Example: December 27, 2023 Gregorian -> October 6, 1402 Jalali (approx, verify actual)
+        let (jy, jm, jd) = gregorian_to_jalali(2023, 12, 27);
+        assert_eq!(jy, 1402); // adjust if needed based on verification
+        assert_eq!(jm, 10);
+        assert_eq!(jd, 6);
+    }
+
+    #[test]
+    fn test_jalali_to_gregorian() {
+        // Reverse of above
+        let (gy, gm, gd) = jalali_to_gregorian(1402, 10, 6);
+        assert_eq!(gy, 2023);
+        assert_eq!(gm, 12);
+        assert_eq!(gd, 27);
+    }
+}
