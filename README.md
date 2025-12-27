@@ -1,8 +1,10 @@
 # Jalali-rs
 
-![Crates.io](https://img.shields.io/crates/v/jalali-rs.svg)  
-![License](https://img.shields.io/crates/l/jalali-rs.svg)  
-![Downloads](https://img.shields.io/crates/d/jalali-rs.svg)
+![License](https://img.shields.io/badge/license-MIT-blue.svg) 
+[![Docs Status](https://docs.rs/jalali-rs/badge.svg)](https://docs.rs/jalali-rs)
+[![Latest Version](https://img.shields.io/crates/v/jalali-rs.svg)](https://crates.io/crates/jalali-rs)
+
+
 
 A lightweight and efficient Rust crate for converting dates between the Gregorian and Jalali (Persian) calendars. This library provides accurate date conversions, support for Unix timestamps, string parsing with custom separators, and digit conversions between Latin, Persian, and Arabic numerals. It's designed to be simple, dependency-free, and easy to integrate into your Rust projects.
 
@@ -111,9 +113,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 # Jalali-rs (جلالی-آراس)
 
-![Crates.io](https://img.shields.io/crates/v/jalali-rs.svg)  
-![License](https://img.shields.io/crates/l/jalali-rs.svg)  
-![Downloads](https://img.shields.io/crates/d/jalali-rs.svg)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+[![Docs Status](https://docs.rs/jalali-rs/badge.svg)](https://docs.rs/jalali-rs)
+[![Latest Version](https://img.shields.io/crates/v/jalali-rs.svg)](https://crates.io/crates/jalali-rs)
+
 
 یک کرات سبک و کارآمد در Rust برای تبدیل تاریخ‌های میلادی (گریگوری) به شمسی (جلالی) و برعکس. این کتابخانه تبدیل‌های دقیق تاریخ، پشتیبانی از تایم‌استمپ یونیکس، پارس رشته‌های تاریخ با جداکننده‌های سفارشی، و تبدیل اعداد بین لاتین، پارسی و عربی را فراهم می‌کند. طراحی شده تا ساده، بدون وابستگی خارجی، و آسان برای ادغام در پروژه‌های Rust شما باشد.
 
